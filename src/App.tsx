@@ -1,13 +1,13 @@
 import { useEffect, useMemo, useState } from 'react';
-import axios from 'axios';
 import type { Movie } from './types';
+import axios from 'axios';
 import { Header } from './components/Header/Header';
 import { MovieCard } from './components/MovieCard/MovieCard';
 import { Modal } from './components/Modal/Modal';
 import './App.css';
 
 function App() {
-	const [query, setQuery] = useState('');
+	const [query, setQuery] = useState<string>('');
 	const [movies, setMovies] = useState<Movie[]>([]);
 	const [currentMovie, setCurrentMovie] = useState<Movie | null>(null);
 
@@ -23,7 +23,7 @@ function App() {
 		(async () => {
 			try {
 				const res = await axios.get(`${import.meta.env.VITE_API_URL}/movies`);
-				setMovies(res.data);
+				if (Array.isArray(res.data)) setMovies(res.data);
 			} catch (error) {
 				console.error(error);
 			}
