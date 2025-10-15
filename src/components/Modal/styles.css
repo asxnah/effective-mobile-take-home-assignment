@@ -1,0 +1,160 @@
+.modalMovieWrapper {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 1;
+	background: var(--black--dim);
+}
+
+.modalMovie {
+	height: fit-content;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+
+	margin: 128px 0 0 0;
+	padding: 32px;
+	border-radius: 16px;
+	border: 1px solid var(--lightgrey);
+	background-color: var(--white);
+}
+
+.modalMovie__main {
+	display: flex;
+	justify-content: space-between;
+	gap: 16px;
+}
+
+.modalMovie__rating {
+	align-self: flex-end;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+
+	padding: 8px 16px;
+	border-radius: 8px;
+	background-color: var(--color-main);
+}
+.modalMovie__rating-number {
+	color: var(--black);
+	font-size: 20px;
+}
+
+.modalMovie__closeButton {
+	width: 20px;
+	height: 20px;
+
+	padding: 0;
+	border-radius: 8px;
+	border: none;
+	background: none;
+}
+.modalMovie__closeButton path {
+	transition: stroke 0.3s;
+}
+.modalMovie__closeButton:active path {
+	stroke: var(--darkgrey);
+}
+@media (hover: hover) {
+	.modalMovie__closeButton:hover path {
+		stroke: var(--grey);
+	}
+}
+
+.modalMovie__info {
+	display: flex;
+	gap: 20px;
+}
+
+.modalMovie__preview {
+	width: 30%;
+}
+
+.modalMovie__text {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+
+.modalMovie__title {
+	line-height: 1;
+}
+
+.modalMovie__year {
+	font-size: 20px;
+}
+
+.modalMovie__title,
+.modalMovie__year {
+	line-height: 1;
+}
+
+.modalMovie__genres {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+
+	margin: 8px 0 0 0;
+}
+
+.modalMovie__genre {
+	width: fit-content;
+	display: inline-block;
+	padding: 8px 16px;
+	color: var(--black);
+	border-radius: 8px;
+	background-color: var(--color-main);
+}
+
+.modalMovie__desc {
+	margin: 16px 0 0 0;
+}
+
+@media (width > 2560px) {
+	.modalMovie {
+		width: 30%;
+	}
+}
+@media (width <= 2560px) {
+	.modalMovie {
+		width: 40%;
+	}
+}
+@media (width <= 1440px) {
+	.modalMovie {
+		width: 50%;
+	}
+}
+@media (width <= 1024px) {
+	.modalMovie {
+		width: 60%;
+	}
+}
+@media (width <= 800px) {
+	.modalMovie {
+		width: 70%;
+		margin: 32px 0 0 0;
+	}
+
+	.modalMovie__info {
+		flex-direction: column;
+	}
+
+	.modalMovie__preview {
+		width: 50%;
+	}
+}
+@media (width <= 600px) {
+	.modalMovie {
+		width: 80%;
+	}
+
+	.modalMovie__preview {
+		width: 60%;
+	}
+}
