@@ -73,6 +73,12 @@ img {
 	border: 1px solid var(--lightgrey);
 }
 
+@media (width <= 600px) {
+	img {
+		border-radius: 8px;
+	}
+}
+
 @media (hover: hover) {
 	button:hover {
 		cursor: pointer;

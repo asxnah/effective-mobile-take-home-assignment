@@ -29,6 +29,12 @@
 	opacity: 1;
 	transform: translateY(128px);
 }
+@media (width <= 600px) {
+	.modalMovie {
+		padding: 16px;
+		border-radius: 8px;
+	}
+}
 
 .modalMovie__main {
 	display: flex;
