@@ -17,11 +17,17 @@
 	flex-direction: column;
 	gap: 16px;
 
-	margin: 128px 0 0 0;
 	padding: 32px;
 	border-radius: 16px;
 	border: 1px solid var(--lightgrey);
 	background-color: var(--white);
+	opacity: 0;
+	transform: translateY(0px);
+	transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.modalMovie--visible {
+	opacity: 1;
+	transform: translateY(128px);
 }
 
 .modalMovie__main {

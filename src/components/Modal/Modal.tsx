@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import type { ModalProps } from '../../types';
 import { truncate } from '../../utils/truncate';
 import { StarIcon } from '../../assets/StarIcon';
@@ -5,9 +6,16 @@ import { XMarkIcon } from '../../assets/XMarkIcon';
 import './styles.css';
 
 export const Modal = ({ currentMovie, onClose }: ModalProps) => {
+	const [visible, setVisible] = useState(false);
+
+	useEffect(() => {
+		const timer = requestAnimationFrame(() => setVisible(true));
+		return () => cancelAnimationFrame(timer);
+	}, []);
+
 	return (
 		<div className="modalMovieWrapper">
-			<div className="modalMovie">
+			<div className={`modalMovie ${visible ? 'modalMovie--visible' : ''}`}>
 				<div className="modalMovie__main">
 					<div className="modalMovie__info">
 						<img
