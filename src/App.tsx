@@ -1,13 +1,14 @@
 import { useEffect, useMemo, useState } from 'react';
 import type { Movie } from './types';
-import axios from 'axios';
 import { Header } from './components/Header/Header';
 import { MovieCard } from './components/MovieCard/MovieCard';
 import { Modal } from './components/Modal/Modal';
+import { getData } from '../server/api';
 import './App.css';
 
 function App() {
 	const [query, setQuery] = useState<string>('');
+	const [error, setError] = useState<string | null>(null);
 	const [movies, setMovies] = useState<Movie[]>([]);
 	const [currentMovie, setCurrentMovie] = useState<Movie | null>(null);
 
@@ -20,14 +21,18 @@ function App() {
 	}, [query, movies]);
 
 	useEffect(() => {
-		(async () => {
-			try {
-				const res = await axios.get(`${import.meta.env.VITE_API_URL}/movies`);
-				if (Array.isArray(res.data)) setMovies(res.data);
-			} catch (error) {
-				console.error(error);
+		const fetchMovies = async () => {
+			const res = await getData();
+			if (res.success) {
+				setMovies(res.data);
+				setError(null);
 			}
-		})();
+			if (!res.success) {
+				setError(res.data);
+			}
+		};
+
+		fetchMovies();
 	}, []);
 
 	return (
@@ -49,7 +54,7 @@ function App() {
 						))}
 					</ul>
 				) : (
-					<p className="noMoviesAlert">Тут пусто</p>
+					<p className="noMoviesAlert">{error || 'Ничего не найдено'}</p>
 				)}
 			</main>
 			{currentMovie && (
